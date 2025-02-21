@@ -1,0 +1,29 @@
+The issue stems from the fact that the `color: blue` declaration in the `div` selector is more specific than the `color: green` declaration in the `div p` selector. This is because the `div p` selector has a specificity of 0,1,0 (one type selector), while the `div` selector has a specificity of 0,1,0 (one type selector). In this scenario, the last encountered declaration wins.
+
+To solve this, we can use the `!important` flag to override the specificity.
+
+```css
+div {
+  color: blue;
+}
+
+p {
+  color: red;
+}
+
+div p {
+  color: green !important; /* Now this overrides */
+}
+
+div p:first-of-type {
+  color: purple; /* This is applied correctly */
+}
+```
+
+Alternatively, increase specificity of `div p` selector.
+
+```css
+div p {
+  color: green; /* Now this overrides */
+}
+```
