@@ -1,0 +1,21 @@
+The following CSS code snippet exhibits an unusual behavior related to specificity and inheritance:
+
+```css
+div {
+  color: blue;
+}
+
+p {
+  color: red;
+}
+
+div p {
+  color: green; /* This rule is unexpectedly overridden */
+}
+
+div p:first-of-type {
+  color: purple; /* This is applied correctly */
+}
+```
+
+The unexpected behavior is that the `div p` selector doesn't seem to be properly overriding the `div` selector. The `color: green` declaration is ignored. However, if a pseudo-class like `:first-of-type` is added to the selector, the specificity changes and the rule applies correctly.
